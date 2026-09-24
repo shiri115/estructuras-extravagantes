@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Las 3 Estructuras Más Curiosas del Mundo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f0f13;
+            color: #f0f0f5;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            position: relative;
+            background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #a1a1aa;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Navigation dots */
+        nav {
+            position: fixed;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 100;
+        }
+
+        nav a {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3f3f46;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #818cf8;
+            transform: scale(1.3);
+            box-shadow: 0 0 12px rgba(129, 140, 248, 0.6);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .estructura {
+            max-width: 1100px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .estructura:nth-child(even) {
+            direction: rtl;
+        }
+
+        .estructura:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .imagen-container {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            aspect-ratio: 4/3;
+        }
+
+        .imagen-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .imagen-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .imagen-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 15, 19, 0.4), transparent 40%);
+            pointer-events: none;
+        }
+
+        .info {
+            padding: 1rem;
+        }
+
+        .numero {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .info h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .ubicacion {
+            color: #818cf8;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .ubicacion::before {
+            content: '📍';
+        }
+
+        .info p {
+            color: #a1a1aa;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .curiosidad {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 3px solid #818cf8;
+            padding: 1rem 1.25rem;
+            border-radius: 0 0.75rem 0.75rem 0;
+            font-size: 0.95rem;
+            color: #c7d2fe;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #0a0a0e;
+            color: #71717a;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .estructura {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .estructura:nth-child(even) {
+                direction: ltr;
+            }
+
+            nav {
+                display: none;
+            }
+
+            section {
+                min-height: auto;
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Las 3 Estructuras Más Curiosas del Mundo</h1>
+        <p>Arquitectura que desafía la lógica, la gravedad y la imaginación</p>
+    </header>
+
+    <nav>
+        <a href="#estructura1" class="active" title="Edificio Cesta"></a>
+        <a href="#estructura2" title="Casa Torcida"></a>
+        <a href="#estructura3" title="Casa Loca"></a>
+    </nav>
+
+    <!-- Estructura 1: Edificio Cesta -->
+    <section id="estructura1">
+        <div class="estructura">
+            <div class="imagen-container">
+                <img src="images/estructura1.jpg" alt="Edificio Cesta - Longaberger Basket Building">
+            </div>
+            <div class="info">
+                <div class="numero">1</div>
+                <h2>Edificio Cesta</h2>
+                <div class="ubicacion">Newark, Ohio, Estados Unidos</div>
+                <p>
+                    La antigua sede de la empresa Longaberger es un edificio de siete pisos 
+                    con la forma exacta de una cesta de mimbre gigante. Construido en 1997, 
+                    es una réplica a escala 160 veces mayor de la cesta Medium Market de la compañía.
+                </p>
+                <div class="curiosidad">
+                    <strong>Dato curioso:</strong> Las asas de la cesta están hechas de acero 
+                    y pesan varias toneladas. El edificio fue diseñado por el propio fundador 
+                    de la empresa, Dave Longaberger, quien insistió en que su sede debía 
+                    parecerse a su producto estrella.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estructura 2: Casa Torcida -->
+    <section id="estructura2">
+        <div class="estructura">
+            <div class="imagen-container">
+                <img src="images/estructura2.jpg" alt="Casa Torcida - Krzywy Domek">
+            </div>
+            <div class="info">
+                <div class="numero">2</div>
+                <h2>Casa Torcida</h2>
+                <div class="ubicacion">Sopot, Polonia</div>
+                <p>
+                    También conocida como Krzywy Domek, esta estructura parece haber sido 
+                    derretida por el sol o distorsionada por un sueño de Dalí. Diseñada por 
+                    los arquitectos Szotyńscy y Zalewski e inaugurada en 2004, alberga un 
+                    centro comercial y se ha convertido en un icono de la ciudad costera.
+                </p>
+                <div class="curiosidad">
+                    <strong>Dato curioso:</strong> Su diseño está inspirado en los dibujos 
+                    infantiles del ilustrador polaco Jan Marcin Szancer y en las obras de 
+                    Salvador Dalí. Las paredes onduladas y las ventanas irregulares hacen 
+                    que sea casi imposible encontrar una línea recta en toda la fachada.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estructura 3: Casa Loca -->
+    <section id="estructura3">
+        <div class="estructura">
+            <div class="imagen-container">
+                <img src="images/estructura3.jpg" alt="Casa Loca - Hang Nga Guesthouse">
+            </div>
+            <div class="info">
+                <div class="numero">3</div>
+                <h2>Casa Loca</h2>
+                <div class="ubicacion">Da Lat, Vietnam</div>
+                <p>
+                    Conocida oficialmente como Hang Nga Guesthouse y popularmente como 
+                    “Crazy House”, esta casa de huéspedes parece salida de un cuento de 
+                    hadas (o de una pesadilla). Diseñada por la arquitecta Đặng Việt Nga, 
+                    combina formas orgánicas, árboles, cuevas y elementos surrealistas.
+                </p>
+                <div class="curiosidad">
+                    <strong>Dato curioso:</strong> Cada habitación tiene un tema diferente 
+                    (oso, tigre, hormiga, etc.) y está conectada por pasillos laberínticos, 
+                    puentes y escaleras en espiral. La arquitecta se inspiró en la naturaleza 
+                    y en la obra de Antoni Gaudí para crear este edificio vivo.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Presentación sobre las estructuras más curiosas del mundo · Imágenes: images/estructura1.jpg, estructura2.jpg y estructura3.jpg</p>
+    </footer>
+
+    <script>
+        // Resaltar punto de navegación activo según scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
